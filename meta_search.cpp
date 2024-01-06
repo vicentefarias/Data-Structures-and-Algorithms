@@ -25,4 +25,6 @@ int main() {
     constexpr std::array<char, 5> charArray = {'a', 'b', 'c', 'd', 'e'};
     constexpr int charResult = binary_search('o', charArray);
     static_assert(charResult == -1, "Element found at compile-time");
-return 0; }
+return 0;
+ }
+

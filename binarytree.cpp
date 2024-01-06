@@ -1,4 +1,7 @@
 #include <iostream>
+#include <memory>
+using namespace std;
+#include <iostream>
 using namespace std;
 
 template <typename T>
@@ -61,6 +64,64 @@ Node trimBST(Node root, int L, int R){
     return root;
 }
 
-int main(){
+// Function to create a sample BST
+Node createSampleBST() {
+    Node root = make_shared<BinaryTreeNode<int>>(BinaryTreeNode<int>{10, nullptr, nullptr});
+    root->left = make_shared<BinaryTreeNode<int>>(BinaryTreeNode<int>{5, nullptr, nullptr});
+    root->right = make_shared<BinaryTreeNode<int>>(BinaryTreeNode<int>{15, nullptr, nullptr});
+    root->left->left = make_shared<BinaryTreeNode<int>>(BinaryTreeNode<int>{3, nullptr, nullptr});
+    root->left->right = make_shared<BinaryTreeNode<int>>(BinaryTreeNode<int>{7, nullptr, nullptr});
+    root->right->right = make_shared<BinaryTreeNode<int>>(BinaryTreeNode<int>{18, nullptr, nullptr});
+    return root;
+}
+
+// Function to test PreOrderTraversal, PostOrderTraversal, and InOrderTraversal
+void testTraversals(Node &root) {
+    cout << "Pre-order traversal:" << endl;
+    PreOrderTraversal(root);
+
+    cout << "Post-order traversal:" << endl;
+    PostOrderTraversal(root);
+
+    cout << "In-order traversal:" << endl;
+    InOrderTraversal(root);
+}
+
+// Function to test height of the tree
+void testHeight(Node &root) {
+    int treeHeight = height(root);
+    cout << "Height of the tree: " << treeHeight << endl;
+}
+
+// Function to test rangeSumBST
+void testRangeSumBST(Node &root) {
+    int L = 5, R = 15;
+    int sum = rangeSumBST(root, L, R);
+    cout << "Sum of values in the BST between " << L << " and " << R << ": " << sum << endl;
+}
+
+// Function to test trimBST
+void testTrimBST(Node &root) {
+    int L = 5, R = 15;
+    Node trimmedRoot = trimBST(root, L, R);
+    cout << "In-order traversal of the trimmed BST between " << L << " and " << R << ":" << endl;
+    InOrderTraversal(trimmedRoot);
+}
+
+int main() {
+    Node root = createSampleBST();
+
+    // Test traversals
+    testTraversals(root);
+
+    // Test height
+    testHeight(root);
+
+    // Test rangeSumBST
+    testRangeSumBST(root);
+
+    // Test trimBST
+    testTrimBST(root);
+
     return 0;
 }

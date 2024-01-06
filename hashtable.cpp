@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <unordered_map>
 #include <map>
@@ -31,5 +32,23 @@ int MaximumCount(const string &s){
 }
 
 int main(){
+    // Test FindAnagrams
+    vector<string> anagrams_input = {"listen", "silent", "enlist", "hello", "world", "dlrow"};
+    vector<vector<string>> anagrams_result = FindAnagrams(anagrams_input);
+
+    cout << "Anagrams in the input vector:" << endl;
+    for (const auto &group : anagrams_result) {
+        for (const auto &word : group) {
+            cout << word << " ";
+        }
+        cout << endl;
+    }
+
+    // Test MaximumCount
+    string max_count_input = "hello";
+    int max_count_result = MaximumCount(max_count_input);
+
+    cout << "Maximum count of a character in \"" << max_count_input << "\": " << max_count_result << endl;
+
     return 0;
 }
